@@ -16,12 +16,12 @@ pipeline{
         }
         stage('executesonarqube'){
             steps{
-                sh "/opt/maven38/bin/mvn clean sonar:sonar"
+                sh "/opt/maven38/bin/mvn sonar:sonar"
             }
         }
         stage('uploadintos3bucket'){
             steps{
-                sh "aws s3 cp maven-web-application.war s3://mavenpackages/warfiles/"
+                sh "aws s3 cp  pipeline2/target/maven-web-application.war s3://mavenpackages/warfiles/"
             }
         }
         stage('deploy'){
