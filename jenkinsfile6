@@ -19,6 +19,11 @@ pipeline{
                 sh "/opt/maven38/bin/mvn clean sonar:sonar"
             }
         }
+        stage('uploadintos3bucket'){
+            steps{
+                sh "aws s3 cp maven-web-application.war s3://mavenpackages/warfiles/"
+            }
+        }
         stage('deploy'){
             steps{
                 sh "/opt/maven38/bin/mvn clean deploy"
