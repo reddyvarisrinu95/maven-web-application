@@ -1,22 +1,25 @@
 pipeline{
-    agentany
+
+    agent any
+
+
     stages{
-        stage(checkoutcode){
+        stage('checkoutcode'){
             steps{
                 git credentialsId: '8d414a35-1bcf-4e05-99b5-efc386a10ea9', url: 'https://github.com/reddyvarisrinu95/maven-web-application.git'
         }
         }
-        stage(build){
+        stage('build'){
             steps{
                 sh "mvn clean package"
             }
         }
-        stage(executesonarqube){
+        stage('executesonarqube'){
             steps{
-                sh "mvn clean sonar"
+                sh "mvn clean sonar:sonar"
             }
         }
-        stage(deploy){
+        stage('deploy'){
             steps{
                 sh "mvn clean deploy"
             }
