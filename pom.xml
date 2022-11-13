@@ -94,13 +94,13 @@
 	</dependencies>
 	
 	<distributionManagement>
-	<!--
+	
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
 	      <url>http://18.143.162.180:8081/repository/myfirstrepo-mavenrelease/</url>
 	    </repository>
-	    -->
+	
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
