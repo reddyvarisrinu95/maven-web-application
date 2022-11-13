@@ -21,7 +21,7 @@ pipeline{
         }
         stage('uploadintos3bucket'){
             steps{
-                sh "aws s3 cp  pipeline2/target/maven-web-application.war s3://mavenpackages/warfiles/"
+                sh "aws s3 cp target/maven-web-application.war s3://mavenpackages/warfiles/"
             }
         }
         stage('deploy'){
