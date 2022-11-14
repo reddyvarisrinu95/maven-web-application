@@ -25,10 +25,9 @@ pipeline{
         }
         stage('buildimage'){
             steps{
-                sh'''
-                aws s3 cp https://mavenpackages.s3.ap-southeast-1.amazonaws.com/warfiles/maven-web-application.war .
-                docker build -t . reddyvarisrinu/maven-web-application:0.0.1
-                '''
+                //aws s3 cp https://mavenpackages.s3.ap-southeast-1.amazonaws.com/warfiles/maven-web-application.war .
+                sh "docker build -t . reddyvarisrinu/maven-web-application:0.0.1"
+        
             }
         }
 
