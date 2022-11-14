@@ -25,7 +25,7 @@ pipeline{
         }
         stage('buildimage'){
             steps{
-                sh "docker built -t maven-web-application:0.0.1 ."  
+                sh "docker build -t maven-web-application:0.0.1 ."  
             }
         }
         stage('pushintoecr'){
