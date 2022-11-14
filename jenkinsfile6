@@ -14,21 +14,31 @@ pipeline{
                 sh "/opt/maven38/bin/mvn clean package"
             }
         }
-        stage('executesonarqube'){
+       /* stage('executesonarqube'){
             steps{
                 sh "/opt/maven38/bin/mvn sonar:sonar"
-            }
+            }*/
         }
         stage('uploadintos3bucket'){
             steps{
                 sh "aws s3 cp target/maven-web-application.war s3://mavenpackages/warfiles/"
             }
         }
-        stage('deploy'){
+        stage('buildimage'){
             steps{
-                sh "/opt/maven38/bin/mvn clean deploy"
+                sh'''
+                aws s3 cp https://mavenpackages.s3.ap-southeast-1.amazonaws.com/warfiles/maven-web-application.war .
+                docker build -t . reddyvarisrinu/maven-web-application:0.0.1
+                '''
             }
         }
+            
+        
+                
+            
+        
+       
+    
     
     }
  
