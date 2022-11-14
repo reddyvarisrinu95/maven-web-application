@@ -1,5 +1,6 @@
 pipeline{
 
+
     agent any
 
 
@@ -11,14 +12,13 @@ pipeline{
         }
         stage('build'){
             steps{
-                sh "/opt/maven38/bin/mvn clean package"
+                sh "mvn clean package"
             }
         }
        /* stage('executesonarqube'){
             steps{
                 sh "/opt/maven38/bin/mvn sonar:sonar"
             }*/
-        }
         stage('uploadintos3bucket'){
             steps{
                 sh "aws s3 cp target/maven-web-application.war s3://mavenpackages/warfiles/"
@@ -32,14 +32,10 @@ pipeline{
                 '''
             }
         }
-            
-        
-                
-            
-        
-       
-    
-    
+
+
     }
- 
-}//pipeline closing
+
+
+}
+
