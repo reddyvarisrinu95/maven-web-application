@@ -25,9 +25,10 @@ pipeline{
         }
         stage('buildimage'){
             steps{
-                //aws s3 cp https://mavenpackages.s3.ap-southeast-1.amazonaws.com/warfiles/maven-web-application.war .
+            
                 sh "docker build -t reddyvarisrinu/maven-web-application:0.0.1 ."
             }
+        }    
         stage('pushimageintoecr'){
             steps{
                 sh'''
@@ -35,10 +36,9 @@ pipeline{
                 docker login --username AWS --password-stdin 126152713411.dkr.ecr.ap-southeast-1.amazonaws.com
                 docker push 126152713411.dkr.ecr.ap-southeast-1.amazonaws.com/demoecr:latest
                 '''
-
             }
         }
-        }
+        
 
 
     }
