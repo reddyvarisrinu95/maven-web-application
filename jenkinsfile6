@@ -18,11 +18,11 @@ pipeline{
             steps{
                 sh "/opt/maven38/bin/mvn sonar:sonar"
             }*/
-        stage('uploadintos3bucket'){
+        /*stage('uploadintos3bucket'){
             steps{
                 sh "aws s3 cp target/maven-web-application.war s3://mavenpackages/warfiles/"
             }
-        }
+        }*/
         stage('buildimage'){
             steps{
                 sh "docker build -t maven-web-application:0.0.1 ."  
