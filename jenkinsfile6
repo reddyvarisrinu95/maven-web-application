@@ -23,16 +23,17 @@ pipeline{
                 sh "aws s3 cp target/maven-web-application.war s3://mavenpackages/warfiles/"
             }
         }*/
-        stage('buildimage'){
+        /*stage('buildimage'){
             steps{
                 sh "docker build -t maven-web-application:0.0.1 ."  
             }
-        }
+        }*/
         stage('pushintoecr'){
             steps{
                 sh'''
+                docker build -t myrepo .
                 aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 126152713411.dkr.ecr.ap-southeast-1.amazonaws.com
-                docker tag maven-web-application:0.0.1 126152713411.dkr.ecr.ap-southeast-1.amazonaws.com/myrepo:latest
+                docker tag myrepo:latest 126152713411.dkr.ecr.ap-southeast-1.amazonaws.com/myrepo:latest
                 docker push 126152713411.dkr.ecr.ap-southeast-1.amazonaws.com/myrepo:latest
                 '''
             }
