@@ -38,6 +38,11 @@ pipeline{
             }
             
         }
+        stage('eksdeploy'){
+            steps{
+                
+            }
+        }
         
 
 
@@ -45,5 +50,4 @@ pipeline{
 
 
 }//pipelineclosings
-
 
