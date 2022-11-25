@@ -24,5 +24,13 @@ pipeline{
                 sh "docker build -t maven-web-application:0.0.1 ."
             }
         }
+        stage('push into ecr'){
+            steps{
+                sh'''
+                aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com
+                docker push 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com/demoimage:0.0.1
+                '''
+            }
+        }
     }
 }//pipelineclosing
