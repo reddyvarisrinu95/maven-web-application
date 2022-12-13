@@ -48,7 +48,7 @@ pipeline{
                 sshagent(['KUBEADM_CREDENTIALS']) {
                     sh "scp -o StrictHostKeyChecking=no mavenwebappdeployment.yaml service.yaml ec2-user@172.31.25.2:/home/ec2-user/"
                     sh "aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com"
-                    sh "kubectl apply -f /home/ec2-user/mavenwebappdeployment.yaml"
+                    sh "kubectl apply -f ."
                     
             
                 }
