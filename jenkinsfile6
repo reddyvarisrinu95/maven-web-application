@@ -6,9 +6,6 @@ pipeline{
     tools{
         maven 'maven3.8.6'
     }
-    tools{
-        dockerTool 'docker'
-    }
 
 
     stages{
@@ -33,7 +30,7 @@ pipeline{
         }*/
         stage('buildimage'){
             steps{
-                sh "docker build -t maven-web-application:latest ."  
+                sh "/opt/containerd/bin/docker build -t maven-web-application:latest ."  
             }
         }
         /*stage('pushintoecr'){
