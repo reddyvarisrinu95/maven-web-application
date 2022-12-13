@@ -30,7 +30,7 @@ pipeline{
         }*/
         stage('buildimage'){
             steps{
-                sh "/opt/containerd/bin/docker build -t maven-web-application:latest ."  
+                sh "docker build -t maven-web-application:latest ."  
             }
         }
         /*stage('pushintoecr'){
