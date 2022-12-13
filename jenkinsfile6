@@ -33,17 +33,16 @@ pipeline{
                 sh "docker build -t maven-web-application:latest ."  
             }
         }
-        /*stage('pushintoecr'){
+        stage('pushintoecr'){
             steps{
                 sh'''
-                docker build -t myapp .
                 aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com
-                docker tag myapp:latest 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com/myapp:latest
+                docker tag maven-web-application:latest 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com/myapp:latest
                 docker push 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com/myapp:latest
                 '''
             }
             
-        }*/
+        }
         /*stage('eksdeploy'){
             steps{
                 sh'''
