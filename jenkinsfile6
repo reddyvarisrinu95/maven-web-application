@@ -28,12 +28,12 @@ pipeline{
                 sh "aws s3 cp target/maven-web-application.war s3://mavenpackages/warfiles/"
             }
         }*/
-        /*stage('buildimage'){
+        stage('buildimage'){
             steps{
-                sh "docker build -t maven-web-application:0.0.1 ."  
+                sh "docker build -t maven-web-application:latest ."  
             }
-        }*/
-        stage('pushintoecr'){
+        }
+        /*stage('pushintoecr'){
             steps{
                 sh'''
                 docker build -t myapp .
@@ -43,7 +43,7 @@ pipeline{
                 '''
             }
             
-        }
+        }*/
         /*stage('eksdeploy'){
             steps{
                 sh'''
