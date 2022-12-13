@@ -46,7 +46,7 @@ pipeline{
         stage('eksdeploy'){
             steps{
                 sshagent(['KUBEADM_CREDENTIALS']) {
-                    sh "scp -o StrictHostKeyChecking=no mavenwebappdeployment.yaml service.yaml ec2-user@52.65.114.161:/home/ec2-user/"
+                    sh "scp mavenwebappdeployment.yaml service.yaml ec2-user@52.65.114.161:/home/ec2-user/"
                     script{
                         try{
                             sh "aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com"
