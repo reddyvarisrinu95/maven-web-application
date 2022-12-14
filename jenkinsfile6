@@ -38,7 +38,8 @@ pipeline{
                 script{
                     withCredentials([string(credentialsId: 'dockerhub_credentials', variable: 'password')]){
                        sh "docker login -u reddyvarisrinu95 -p ${password}"
-                       sh "docker push reddyvarisrinu95/maven-web-application:1.0"
+                       sh "docker tag maven-web-application:1.0 mavenwebapp:1.0"
+                       sh "docker push reddyvarisrinu95/mavenwebapp:1.0"
     
                     }
 
