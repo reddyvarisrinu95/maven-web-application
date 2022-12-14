@@ -30,31 +30,23 @@ pipeline{
         }*/
         stage('buildimage'){
             steps{
-                sh "docker build -t maven-web-application:latest ."  
+                sh "docker build -t maven-web-application:1.0 ."  
             }
         }
-        stage('pushintoecr'){
+        stage('pushtodockerhub'){
             steps{
-                sh'''
-                aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com
-                docker tag maven-web-application:latest 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com/myapp:latest
-                docker push 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com/myapp:latest
-                '''
-            }
-            
-        }
-        stage('eksdeploy'){
-            steps{
-                sshagent(['KUBEADM_CREDENTIALS']) {
-                    sh "scp -o StrictHostKeyChecking=no mavenwebappdeployment.yaml service.yaml ec2-user@172.31.25.2:/home/ec2-user/"
-                    sh "aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com"
-                    sh "kubectl apply -f ."
-                    
-            
+                script{
+                    withCredentials([string(credentialsId: 'dockerhub_credentials', variable: 'password')]){
+                       sh "docker login -u reddyvarisrinu95 -p ${password}"
+                       sh "docker push reddyvarisrinu95/maven-web-application:1.0"
+    
+                    }
+
                 }
-                
             }
         }
+        
+        
     
                         
                     
