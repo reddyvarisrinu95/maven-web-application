@@ -30,7 +30,7 @@ pipeline{
         }*/
         stage('buildimage'){
             steps{
-                sh "docker build -t maven-web-application:1.0 ."  
+                sh "docker build -t reddyvarisrinu95/maven-web-application:1.0 ."  
             }
         }
         stage('pushtodockerhub'){
@@ -38,8 +38,7 @@ pipeline{
                 script{
                     withCredentials([string(credentialsId: 'dockerhub_credentials', variable: 'password')]){
                        sh "docker login -u reddyvarisrinu95 -p ${password}"
-                       sh "docker tag maven-web-application:1.0 mavenwebapp:1.0"
-                       sh "docker push reddyvarisrinu95/mavenwebapp:1.0"
+                       sh "docker push reddyvarisrinu95/maven-web-application:1.0"
     
                     }
 
