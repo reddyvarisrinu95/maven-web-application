@@ -48,8 +48,12 @@ pipeline{
         stage('deploy to k8s'){
             steps{
                 script{
-                    kubernetesDeploy(configs: "", kubeconfigId: "kubernetes")
-                    kubectl apply -f mavenwebappdeployment.yaml
+                    sshagent(['SSH_KEYS']){
+                        sh "scp -o mavenwebappdeployment.yaml ec2-user@54.206.33.156:/home/ec2-user"
+                        sh "ssh ec2-user@54.206.33.156 kubectl apply -f ."
+    
+                    }
+                    
 
                 }
             }
