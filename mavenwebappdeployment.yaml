@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: mavenwebappcontainer
-          image: 126152713411.dkr.ecr.ap-southeast-2.amazonaws.com/myapp:latest
+          image: reddyvarisrinu95/maven-web-application:1.0
           ports:
             - containerPort: 8080
           resources:

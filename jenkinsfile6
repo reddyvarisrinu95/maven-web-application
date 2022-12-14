@@ -45,6 +45,14 @@ pipeline{
                 }
             }
         }
+        stage('deploy to k8s'){
+            steps{
+                script{
+                    kubernetesDeploy configs: 'mavenwebappdeployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubernetes'
+
+                }
+            }
+        }
         
         
     
