@@ -49,7 +49,7 @@ pipeline{
             steps{
                 script{
                     sshagent(['SSH_KEYS']){
-                        sh "scp -o mavenwebappdeployment.yaml ec2-user@54.206.33.156:/home/ec2-user"
+                        sh "scp -o mavenwebappdeployment.yaml ec2-user@54.206.33.156:/home/ec2-user/"
                         sh "ssh ec2-user@54.206.33.156 kubectl apply -f ."
     
                     }
